@@ -1,0 +1,8 @@
+.text-color-gradient-90-red-to-purple {
+    -webkit-background-clip: text;
+    background-image: linear-gradient(90deg,#da1e28,#8a3ffc);
+    caret-color: #fa4d56;
+    color: transparent;
+    display: inline-block;
+	 
+}

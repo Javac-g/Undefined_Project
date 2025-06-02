@@ -1,3 +1,32 @@
+:root {
+    --text-color: #000000;
+    --main-color: #ffffff;
+}
+
+
+.home-text span {
+    color: var(--main-color); text-shadow: 0 0 4px black;
+
+}
+
+@media (max-width: 881px) {
+    .home-text h1 {
+        font-size: 2rem;
+    }
+}
+
+.home-text h1 {
+    font-size: 2.7rem;
+	
+	 font-family:IBMPlexSans;
+	  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.home-text h1 {
+    font-size: 2.7rem;
+	 font-family:IBMPlexSans; 
+}
 @font-face {
   font-family: 'AryaTriple';
   src: url('../fonts/Arya-W00-Triple.ttf') format('truetype');
@@ -36,15 +65,15 @@ c4d-masthead-logo::part(custom-text) {
   text-decoration: none;
 }
 :root {
-  --primary: #09aef2;
+  --primary: #8FC53D;
   --primary-light: #75c6d1;
   --secondary: #f6c90e;
   --dark: #2d3436;
   --light: #f8f9fa;
-  --text: #333333;
+  --text: #8FC53D;
   --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   --radius: 8px;
-  --bg_cl:#09aef2;
+  --bg_cl:#8FC53D;
 }
 
 * {
@@ -141,14 +170,24 @@ nav {
 }
 
 .hero {
-  background: var(--bg_cl);
+  
   background-size: cover;
   background-position: center;
-  color: white;
+  color: Black;
   padding: 100px 0;
-  background-image: url(../img/pines_long.jpg);
+  background-image: url(../img/post9.jpg);
 }
 
+.btn {
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    padding: 10px 14px;
+    background: #8FC53D;
+    border-radius: 0.3rem;
+    transition: 0.5s;
+	text-decoration:none;
+}
+   .btn:hover { background: #8FC53D; }
 .hero-content {
   display: grid;
   grid-template-columns: 1fr 1fr;

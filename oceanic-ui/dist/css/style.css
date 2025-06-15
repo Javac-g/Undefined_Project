@@ -1,42 +1,5 @@
-@font-face {
-  font-family: 'AryaTriple';
-  src: url('../fonts/Arya-W00-Triple.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'IBMPlexSans';
-  src: url('./fonts/IBMPlexSans-VariableFont_wdth,wght.ttf') format('truetype');
-  font-weight: 100 700; /* Adjust based on actual supported weights */
-  font-stretch: 75% 100%; /* Adjust based on actual supported widths */
-  font-style: normal;
-}
-
-.custom-text {
-  font-family: 'AryaTriple', sans-serif;
-  font-size: 14px; /* Adjust for fit */
-  line-height: 1;
-  width: 94px;
-  height: 48px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-c4d-masthead-logo::part(custom-text) {
-  font-family: 'AryaTriple', sans-serif;
-  font-size: 34px; /* Adjust for fit */
-  line-height: 1;
- text-decoration: none;
-  overflow: hidden;
-
-  white-space: nowrap;}
-  
-  c4d-masthead-logo::part(link)  {
-  text-decoration: none;
-}
 :root {
-  --primary: #09aef2;
+  --primary: #1a7b88;
   --primary-light: #75c6d1;
   --secondary: #f6c90e;
   --dark: #2d3436;
@@ -44,14 +7,13 @@ c4d-masthead-logo::part(custom-text) {
   --text: #333333;
   --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   --radius: 8px;
-  --bg_cl:#09aef2;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'IBMPlexSans', 'Segoe UI', sans-serif;
+  font-family: 'Montserrat', 'Segoe UI', sans-serif;
 }
 
 body {
@@ -141,12 +103,11 @@ nav {
 }
 
 .hero {
-  background: var(--bg_cl);
+  background-image: url("../img/pines_long.jpg");
   background-size: cover;
   background-position: center;
   color: white;
   padding: 100px 0;
-  background-image: url(../img/pines_long.jpg);
 }
 
 .hero-content {
@@ -163,7 +124,6 @@ nav {
   font-size: 3rem;
   margin-bottom: 20px;
   line-height: 1.2;
-  font-family:IBMPlexSans;
 }
 
 .hero-text p {
@@ -196,7 +156,7 @@ nav {
 }
 
 .featured {
-  padding: 80px 0;
+  padding: 0px 0;
 }
 
 .section-header {

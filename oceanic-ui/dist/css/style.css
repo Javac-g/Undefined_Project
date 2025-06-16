@@ -27,7 +27,71 @@ body {
   margin: 0 auto;
   padding: 0 20px;
 }
+.home-text h1 {
+  font-size: 2.7rem;
+  font-family:IBMPlexSans;
+}
+@font-face {
+  font-family: 'AryaTriple';
+  src: url('../fonts/Arya-W00-Triple.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
+@font-face {
+  font-family: 'IBMPlexSans';
+  src: url('../fonts/IBMPlexSans-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 700; /* Adjust based on actual supported weights */
+  font-stretch: 75% 100%; /* Adjust based on actual supported widths */
+  font-style: normal;
+}
+
+.custom-text {
+  font-family: 'AryaTriple', sans-serif;
+  font-size: 14px; /* Adjust for fit */
+  line-height: 1;
+  width: 94px;
+  height: 48px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+c4d-megamenu-top-nav-menu::part(trigger) {
+  color: #72ac00;
+}
+c4d-top-nav-item::part(link) {
+  color: #72ac00;
+}
+c4d-megamenu-top-nav-menu::part(menu-body) {
+  color: #72ac00;
+}
+c4d-megamenu-top-nav-menu::part(trigger),
+c4d-megamenu-top-nav-menu::part(trigger-icon),
+c4d-top-nav-item::part(link),
+c4d-top-nav-item::part(title) {
+  color: #72ac00;
+  fill: currentColor;
+}
+
+c4d-masthead-logo::part(custom-text) {
+  font-family: 'AryaTriple', sans-serif;
+  font-size: 34px;
+  line-height: 1;
+  text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
+
+  background: linear-gradient(-45deg, #24ff72, #9a4eff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* Optional for Firefox */
+  background-clip: text;
+  color: transparent;
+}
+c4d-masthead-logo::part(link)  {
+  text-decoration: none;
+}
 nav {
   background-color: white;
   box-shadow: var(--shadow);
@@ -116,7 +180,7 @@ nav {
   gap: 50px;
   align-items: center;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 20px;
   padding: 0 20px;
 }
 

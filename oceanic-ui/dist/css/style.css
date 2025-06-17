@@ -551,7 +551,7 @@ nav {
   color: var(--dark);
   border: none;
   border-radius: var(--radius);
-  padding: 15px;
+
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s;

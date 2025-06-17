@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard UI</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+      <path d="M2 17l10 5 10-5"></path>
+      <path d="M2 12l10 5 10-5"></path>
+    </svg>
+    <h1>Premium</h1>
+  </div>
+
+  <nav>
+    <a href="#" class="nav-item active">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="7" height="7"></rect>
+        <rect x="14" y="3" width="7" height="7"></rect>
+        <rect x="14" y="14" width="7" height="7"></rect>
+        <rect x="3" y="14" width="7" height="7"></rect>
+      </svg>
+      Dashboard
+    </a>
+    <a href="#" class="nav-item">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+        <circle cx="9" cy="7" r="4"></circle>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+      </svg>
+      Domain names
+    </a>
+    <a href="#" class="nav-item">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
+      Private email
+    </a>
+    <a href="#" class="nav-item">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+      </svg>
+      SSL
+    </a>
+    <a href="#" class="nav-item">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+      </svg>
+      Hosting
+    </a>
+    <a href="#" class="nav-item">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+      </svg>
+      Premium DNS
+    </a>
+  </nav>
+</aside>
+
+<main class="main-content">
+  <div class="header">
+    <div class="search-bar">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" placeholder="Search anything...">
+    </div>
+
+    <div class="user-profile">
+      <div class="user-avatar">GC</div>
+      <span> Username</span>
+    </div>
+  </div>
+
+  <div class="dashboard-cards">
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Account funds</div>
+          <div class="card-value">$24,780</div>
+        </div>
+        <div class="card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"></line>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+        </div>
+      </div>
+      <div class="card-trend trend-up">↑ Coupon codes available</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Receipts</div>
+          <div class="card-value">385</div>
+        </div>
+        <div class="card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+      </div>
+      <div class="card-trend trend-up">↑ 8% from last month</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Expiring domains</div>
+          <div class="card-value">2</div>
+        </div>
+        <div class="card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+          </svg>
+        </div>
+      </div>
+      <div class="card-trend trend-down">domain1.com - 10/10/2025 </div>
+<div class="card-trend trend-down">domain1.com - 10/10/2025</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Reactivated domains</div>
+          <div class="card-value">1</div>
+        </div>
+        <div class="card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+        </div>
+      </div>
+      <div class="card-trend trend-up">domain3.com</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-header">
+      <h2>Performance Overview</h2>
+      <select>
+        <option>Last 7 days</option>
+        <option>Last 30 days</option>
+        <option>Last 90 days</option>
+      </select>
+    </div>
+
+    <div class="chart-content">
+      <div class="beautiful-chart">
+        <div class="chart-grid">
+          <div class="grid-line"><span class="grid-label">$25k</span></div>
+          <div class="grid-line"><span class="grid-label">$20k</span></div>
+          <div class="grid-line"><span class="grid-label">$15k</span></div>
+          <div class="grid-line"><span class="grid-label">$10k</span></div>
+          <div class="grid-line"><span class="grid-label">$5k</span></div>
+        </div>
+
+        <div class="chart-bars">
+          <div class="chart-month">
+            <div class="revenue-bar" style="height: 55%;"></div>
+            <div class="customer-line" style="bottom: 35%;"></div>
+            <span class="month-label">Jan</span>
+          </div>
+          <div class="chart-month">
+            <div class="revenue-bar" style="height: 65%;"></div>
+            <div class="customer-line" style="bottom: 40%;"></div>
+            <span class="month-label">Feb</span>
+          </div>
+          <div class="chart-month">
+            <div class="revenue-bar" style="height: 58%;"></div>
+            <div class="customer-line" style="bottom: 38%;"></div>
+            <span class="month-label">Mar</span>
+          </div>
+          <div class="chart-month">
+            <div class="revenue-bar" style="height: 72%;"></div>
+            <div class="customer-line" style="bottom: 45%;"></div>
+            <span class="month-label">Apr</span>
+          </div>
+          <div class="chart-month">
+            <div class="revenue-bar" style="height: 68%;"></div>
+            <div class="customer-line" style="bottom: 48%;"></div>
+            <span class="month-label">May</span>
+          </div>
+          <div class="chart-month">
+            <div class="revenue-bar" style="height: 75%;"></div>
+            <div class="customer-line" style="bottom: 52%;"></div>
+            <span class="month-label">Jun</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-legend">
+        <div class="legend-item">
+          <span class="legend-color color-primary"></span>
+          <span>Revenue</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-color color-secondary"></span>
+          <span>Customers</span>
+        </div>
+      </div>
+
+      <div class="performance-metrics">
+        <div class="metric-item">
+          <div class="metric-label">Average Monthly Growth</div>
+          <div class="metric-value">+7.8%</div>
+          <div class="metric-trend">
+            <div class="trend-bar">
+              <div class="trend-fill" style="width: 78%"></div>
+            </div>
+            <span>78% of target</span>
+          </div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-label">Conversion Rate</div>
+          <div class="metric-value">24.6%</div>
+          <div class="metric-trend">
+            <div class="trend-bar">
+              <div class="trend-fill" style="width: 82%"></div>
+            </div>
+            <span>82% of target</span>
+          </div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-label">Customer Retention</div>
+          <div class="metric-value">91.2%</div>
+          <div class="metric-trend">
+            <div class="trend-bar">
+              <div class="trend-fill" style="width: 95%"></div>
+            </div>
+            <span>95% of target</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="activity-feed">
+    <div class="chart-header">
+      <h2>Recent Activity</h2>
+      <a href="#" style="color: var(--primary); text-decoration: none; font-weight: 500;">View All</a>
+    </div>
+
+    <div class="activities">
+      <div class="activity-item">
+        <div class="activity-icon" style="background: linear-gradient(135deg, #8b5cf6, #6366f1);">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+          </svg>
+        </div>
+        <div class="activity-content">
+          <h4>New project created</h4>
+          <p>Website redesign for client XYZ</p>
+          <span class="activity-time">2 hours ago</span>
+        </div>
+      </div>
+
+      <div class="activity-item">
+        <div class="activity-icon" style="background: linear-gradient(135deg, #ec4899, #f43f5e);">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+        <div class="activity-content">
+          <h4>New team member</h4>
+          <p>Sarah Johnson joined the design team</p>
+          <span class="activity-time">Yesterday</span>
+        </div>
+      </div>
+
+      <div class="activity-item">
+        <div class="activity-icon" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+        </div>
+        <div class="activity-content">
+          <h4>Client feedback</h4>
+          <p>Received positive feedback on mobile app mockups</p>
+          <span class="activity-time">2 days ago</span>
+        </div>
+      </div>
+
+      <div class="activity-item">
+        <div class="activity-icon" style="background: linear-gradient(135deg, #10b981, #34d399);">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <div class="activity-content">
+          <h4>Task completed</h4>
+          <p>Michael completed the landing page design</p>
+          <span class="activity-time">3 days ago</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<!-- partial -->
+  
+</body>
+</html>

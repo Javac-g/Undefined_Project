@@ -1,6 +1,6 @@
 :root {
-  --primary: #1a7b88;
-  --primary-light: #75c6d1;
+  --primary: #72ac00;
+  --primary-light: #72ac00;
   --secondary: #f6c90e;
   --dark: #2d3436;
   --light: #f8f9fa;
@@ -232,6 +232,7 @@ nav {
   font-size: 2.5rem;
   color: var(--primary);
   margin-bottom: 15px;
+  font-family: 'IBMPlexSans', sans-serif;
 }
 
 .section-header p {

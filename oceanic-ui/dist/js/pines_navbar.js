@@ -53,7 +53,7 @@ class IBMNavbar extends HTMLElement {
       <c4d-left-nav-menu-section section-id="-1, -1" title="" titleurl="">
 			<c4d-left-nav-menu panel-id="0, -1" title="AI" data-autoid="c4d--masthead__l0--sidenav--nav0"></c4d-left-nav-menu>
 			<c4d-left-nav-menu panel-id="1, -1" title="Hybrid Cloud" data-autoid="c4d--masthead__l0--sidenav--nav1"></c4d-left-nav-menu>
-			<c4d-left-nav-menu panel-id="2, -1" title="Products" data-autoid="c4d--masthead__l0--sidenav--nav2"></c4d-left-nav-menu>
+			<c4d-left-nav-menu panel-id="2, -1" title="Services" data-autoid="c4d--masthead__l0--sidenav--nav2"></c4d-left-nav-menu>
 			<c4d-left-nav-menu-item href="https://www.pines-digital.com/consulting?lnk=L0G" title="Consulting" data-autoid="c4d--masthead__l0--sidenav--nav3"></c4d-left-nav-menu-item>
 			<c4d-left-nav-menu panel-id="4, -1" title="Support" data-autoid="c4d--masthead__l0--sidenav--nav4"></c4d-left-nav-menu>
 			<c4d-left-nav-menu-item href="https://www.pines-digital.com/events/think?lnk=L0G" title="Think 2025" data-autoid="c4d--masthead__l0--sidenav--nav5"></c4d-left-nav-menu-item>

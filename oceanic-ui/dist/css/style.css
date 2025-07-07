@@ -1,6 +1,6 @@
 :root {
-  --primary: #72ac00;
-  --primary-light: #72ac00;
+  --primary: #06c781;
+  --primary-light: #06c781;
   --secondary: #f6c90e;
   --dark: #2d3436;
   --light: #f8f9fa;
@@ -17,11 +17,109 @@
 }
 
 body {
-  background-color: var(--light);
+  background:linear-gradient(180deg, #E3EEFF 0%, #E3EEFF 40%, #DEEBFE 65%, #FFFFFF 100%);
   color: var(--text);
   line-height: 1.6;
 }
-
+.hero__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.hero__background #hero-background01 {
+  position: absolute;
+  width: 152px;
+  height: 152px;
+  top: -205px;
+  left: calc(50% + 72px);
+  background-image: url(../img/bg-pixel-purple.svg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.hero__background #hero-background02 {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  top: -50px;
+  left: calc(50% - 310px);
+  background-image: url(../img/bg-circle-pink.svg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.hero__background #hero-background03 {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  top: 175px;
+  left: calc(50% + 158px);
+  background-image: url(../img/bg-dot-purple.svg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.hero__background #hero-background04 {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  top: 205px;
+  left: calc(50% - 172px);
+  background-image: url(../img/bg-dot-pink.svg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.hero__background #hero-background05 {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  bottom: 200px;
+  left: calc(50% + 162px);
+  background-image: url(../img/bg-dot-blue.svg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.hero__background #hero-background06 {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  bottom: 140px;
+  left: calc(50% - 210px);
+  background-image: url(../img/bg-circle-blue.svg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.hero__background #hero-background07 {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  bottom: 30px;
+  left: calc(50% - 195px);
+  background-image: url(../img/bg-dot-white.svg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.hero__background #hero-background08 {
+  position: absolute;
+  width: 124px;
+  height: 124px;
+  bottom: -70px;
+  left: calc(50% + 130px);
+  background-image: url(../img/bg-pixel-purple.svg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.hero__background #hero-background09 {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  top: 100px;
+  left: calc(50% - 100px);
+  background-image: url(../img/kv-halo.svg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  opacity: .5;
+  transition-duration: 0.8s;
+}
 .container {
   max-width: 1400px;
   margin: 0 auto;
@@ -34,6 +132,12 @@ body {
 @font-face {
   font-family: 'AryaTriple';
   src: url('../fonts/Arya-W00-Triple.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PinesDigital';
+  src: url('../fonts/PinesSeedSans_W_Bd.woff') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -57,19 +161,19 @@ body {
   white-space: nowrap;
 }
 c4d-megamenu-top-nav-menu::part(trigger) {
-  color: #72ac00;
+  color: #06c781;
 }
 c4d-top-nav-item::part(link) {
-  color: #72ac00;
+  color: #06c781;
 }
 c4d-megamenu-top-nav-menu::part(menu-body) {
-  color: #72ac00;
+  color: #06c781;
 }
 c4d-megamenu-top-nav-menu::part(trigger),
 c4d-megamenu-top-nav-menu::part(trigger-icon),
 c4d-top-nav-item::part(link),
 c4d-top-nav-item::part(title) {
-  color: #72ac00;
+  color: #06c781;
   fill: currentColor;
 }
 
@@ -217,6 +321,7 @@ nav {
   width: 100%;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  float: right;
 }
 
 .featured {
@@ -226,6 +331,39 @@ nav {
 .section-header {
   text-align: center;
   margin-bottom: 50px;
+}
+.n1{
+   margin:0;
+   padding: 0;
+  font-family: 'IBMPlexSans', sans-serif;
+  background-color: #06c781;
+  background-repeat: no-repeat;
+  align-content: center;
+  color: white;
+  height: 15rem;
+  width: 100%;
+  line-height: 1.3;
+  text-align: center;
+  background-image: url(../img/hero-bg-products.svg)
+}
+.n2{
+  margin:0;
+  padding: 0;
+  font-family: 'IBMPlexSans', sans-serif;
+  background-color: #06c781;
+  background-repeat: no-repeat;
+  align-content: center;
+  color: white;
+  height: 15rem;
+  width: 100%;
+  line-height: 1.3;
+  text-align: center;
+
+}
+
+.n1  h2{
+  font-size: 2.5rem;
+  font-family: PinesDigital, serif;
 }
 
 .section-header h2 {

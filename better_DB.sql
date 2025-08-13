@@ -801,3 +801,249 @@ ALTER TABLE domains
 
 CREATE INDEX IF NOT EXISTS ix_domains_expires_at ON domains (expires_at);
 
+CREATE OR REPLACE VIEW domain_full_view AS
+SELECT
+  d.id,
+  d.name,
+  -- keep owner as TEXT (old view produced text via concatenation)
+  (CASE WHEN d.company_owned = FALSE THEN c.name ELSE NULL END)::text AS owner,
+  p.name                 AS portfolio,            -- varchar(100)
+  ccat.name              AS category,             -- varchar(50)
+  -- keep tld as TEXT (old view used '.' || t.name which yields text)
+  CASE WHEN t.name IS NOT NULL THEN '.' || t.name ELSE NULL END AS tld,
+  -- keep registrar as varchar(120) (old view had d.registrar varchar)
+  reg.name::varchar(120) AS registrar,
+  d.price_usd,
+  -- keep status as varchar(32) (old view had d.status varchar)
+  COALESCE(d.status_enum::text, d.status)::varchar(32) AS status,
+  d.listing_url,
+  d.logo_url,
+  d.created_at,
+  d.updated_at
+FROM domains d
+LEFT JOIN customers        c    ON d.current_owner_customer_id = c.customer_id
+LEFT JOIN portfolios       p    ON d.portfolio_id = p.id
+LEFT JOIN categories       ccat ON d.category_id  = ccat.id
+LEFT JOIN tlds             t    ON d.tld_id       = t.id
+LEFT JOIN registrar_accounts ra ON d.registrar_account_id = ra.id
+LEFT JOIN registrars       reg  ON ra.registrar_id = reg.registrar_id;
+
+SELECT column_name, data_type FROM information_schema.columns
+WHERE table_name='domains' AND column_name IN
+('steward_user_id','current_owner_customer_id','company_owned','registrar_account_id',
+ 'expires_at','auto_renew','lock_status','auth_code','nameservers','status_enum');
+
+-- Views compile?
+SELECT 1 FROM domain_full_view LIMIT 1;
+SELECT 1 FROM customer_dashboard LIMIT 1;
+
+DO $$
+BEGIN
+  IF EXISTS (
+    SELECT 1 FROM information_schema.columns
+    WHERE table_name='domains' AND column_name='owner_id'
+  ) THEN
+    EXECUTE 'ALTER TABLE domains RENAME COLUMN owner_id TO steward_user_id';
+  END IF;
+END $$;
+
+ALTER TABLE domains
+  ADD COLUMN IF NOT EXISTS current_owner_customer_id BIGINT
+    REFERENCES customers(customer_id) ON UPDATE CASCADE ON DELETE SET NULL,
+  ADD COLUMN IF NOT EXISTS company_owned BOOLEAN NOT NULL DEFAULT TRUE;
+
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_constraint
+    WHERE conname='chk_domains_ownership_consistency'
+  ) THEN
+    ALTER TABLE domains
+      ADD CONSTRAINT chk_domains_ownership_consistency
+      CHECK (
+        (company_owned = TRUE  AND current_owner_customer_id IS NULL) OR
+        (company_owned = FALSE AND current_owner_customer_id IS NOT NULL)
+      );
+  END IF;
+END $$;
+
+CREATE INDEX IF NOT EXISTS ix_domains_owner_customer
+  ON domains (current_owner_customer_id);
+CREATE INDEX IF NOT EXISTS ix_domains_company_owned
+  ON domains (company_owned);
+
+-- ===========================================
+-- 2) DOMAINS: REGISTRAR ACCOUNT FK
+-- ===========================================
+ALTER TABLE domains
+  ADD COLUMN IF NOT EXISTS registrar_account_id BIGINT
+    REFERENCES registrar_accounts(id)
+    ON UPDATE CASCADE ON DELETE SET NULL;
+
+CREATE INDEX IF NOT EXISTS ix_domains_registrar_account
+  ON domains (registrar_account_id);
+
+-- ===========================================
+-- 3) DOMAINS: EXPIRY / RENEWAL / LOCK / AUTH / NS
+-- ===========================================
+ALTER TABLE domains
+  ADD COLUMN IF NOT EXISTS expires_at  TIMESTAMPTZ,
+  ADD COLUMN IF NOT EXISTS auto_renew  BOOLEAN   NOT NULL DEFAULT FALSE,
+  ADD COLUMN IF NOT EXISTS lock_status BOOLEAN   NOT NULL DEFAULT TRUE,
+  ADD COLUMN IF NOT EXISTS auth_code   TEXT,
+  ADD COLUMN IF NOT EXISTS nameservers TEXT[];
+
+CREATE INDEX IF NOT EXISTS ix_domains_expires_at ON domains (expires_at);
+
+-- ===========================================
+-- 4) (NICE) STATUS ENUM (migrate, keep old status column for now)
+-- ===========================================
+DO $$ BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname='domain_status') THEN
+    CREATE TYPE domain_status AS ENUM ('available','listed','sold','parked','pending');
+  END IF;
+END $$;
+
+ALTER TABLE domains
+  ADD COLUMN IF NOT EXISTS status_enum domain_status;
+
+-- migrate only where possible; ignore invalids
+UPDATE domains d
+SET status_enum = d.status::domain_status
+WHERE d.status_enum IS NULL
+  AND d.status IN ('available','listed','sold','parked','pending');
+
+ALTER TABLE domains
+  ALTER COLUMN status_enum SET DEFAULT 'available';
+
+-- Optional index (keep old ix_domains_status if you still read text)
+CREATE INDEX IF NOT EXISTS ix_domains_status_enum ON domains (status_enum);
+
+-- ===========================================
+-- 5) (NICE) IDN CANONICALIZATION + DISPLAY NAME
+--      - store punycode + lowercase in domains.name
+--      - keep UI form in domains.name_display
+-- ===========================================
+ALTER TABLE domains
+  ADD COLUMN IF NOT EXISTS name_display TEXT;
+
+-- Enforce lowercase ASCII (punycode) without breaking existing data:
+-- If you want hard enforcement now, uncomment the CHECK; else add later after data cleanup.
+-- DO $$ BEGIN
+--   IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname='chk_domains_name_ascii_lower') THEN
+--     ALTER TABLE domains
+--       ADD CONSTRAINT chk_domains_name_ascii_lower
+--       CHECK (name = lower(name) AND name ~ '^[\x00-\x7F]+$');
+--   END IF;
+-- END $$;
+
+-- ===========================================
+-- 6) (NICE) TLD country_code (if not already done)
+-- ===========================================
+ALTER TABLE tlds
+  ADD COLUMN IF NOT EXISTS country_code CHAR(2);
+
+-- backfill for 2-letter TLDs missing cc
+UPDATE tlds SET country_code = upper(name)
+WHERE length(name)=2 AND country_code IS NULL;
+
+-- ISO quirk: .uk uses GB
+UPDATE tlds SET country_code = 'GB' WHERE lower(name)='uk';
+
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname='chk_tlds_cc_format') THEN
+    ALTER TABLE tlds
+      ADD CONSTRAINT chk_tlds_cc_format
+      CHECK (country_code IS NULL OR country_code ~ '^[A-Z]{2}$');
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname='chk_tlds_cc_logic') THEN
+    ALTER TABLE tlds
+      ADD CONSTRAINT chk_tlds_cc_logic
+      CHECK (
+        (length(name) = 2 AND country_code IS NOT NULL)
+        OR (length(name) <> 2)
+      );
+  END IF;
+END $$;
+
+CREATE TABLE IF NOT EXISTS listings (
+  listing_id          BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  domain_id           BIGINT NOT NULL REFERENCES domains(id) ON UPDATE CASCADE ON DELETE CASCADE,
+  seller_customer_id  BIGINT REFERENCES customers(customer_id) ON UPDATE CASCADE ON DELETE SET NULL,
+  price               NUMERIC(12,2) CHECK (price >= 0),
+  marketplace         TEXT,                  -- 'sedo','dan','afternic','custom'
+  status              TEXT NOT NULL DEFAULT 'active',
+  created_at          TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at          TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS ix_listings_domain   ON listings(domain_id);
+CREATE INDEX IF NOT EXISTS ix_listings_status   ON listings(status);
+DROP TRIGGER IF EXISTS trg_listings_updated ON listings;
+CREATE TRIGGER trg_listings_updated
+BEFORE UPDATE ON listings
+FOR EACH ROW EXECUTE FUNCTION set_updated_at();
+
+CREATE TABLE IF NOT EXISTS leads (
+  lead_id       BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  domain_id     BIGINT REFERENCES domains(id) ON UPDATE CASCADE ON DELETE SET NULL,
+  contact_name  TEXT,
+  contact_email TEXT,
+  message       TEXT,
+  source        TEXT,
+  created_at    TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS ix_leads_domain ON leads(domain_id);
+
+CREATE TABLE IF NOT EXISTS offers (
+  offer_id           BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  domain_id          BIGINT NOT NULL REFERENCES domains(id) ON UPDATE CASCADE ON DELETE CASCADE,
+  buyer_customer_id  BIGINT REFERENCES customers(customer_id) ON UPDATE CASCADE ON DELETE SET NULL,
+  amount             NUMERIC(12,2) NOT NULL CHECK (amount >= 0),
+  currency           CHAR(3) NOT NULL DEFAULT 'USD',
+  status             TEXT NOT NULL DEFAULT 'open',
+  created_at         TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at         TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS ix_offers_domain ON offers(domain_id);
+DROP TRIGGER IF EXISTS trg_offers_updated ON offers;
+CREATE TRIGGER trg_offers_updated
+BEFORE UPDATE ON offers
+FOR EACH ROW EXECUTE FUNCTION set_updated_at();
+
+CREATE TABLE IF NOT EXISTS escrows (
+  escrow_id  BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  order_id   BIGINT REFERENCES orders(order_id) ON UPDATE CASCADE ON DELETE SET NULL,
+  provider   TEXT,
+  status     TEXT,
+  fee        NUMERIC(12,2) CHECK (fee >= 0),
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE TABLE IF NOT EXISTS commissions (
+  commission_id      BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  order_id           BIGINT REFERENCES orders(order_id) ON UPDATE CASCADE ON DELETE CASCADE,
+  percent            NUMERIC(5,2) CHECK (percent >= 0),
+  amount             NUMERIC(12,2) CHECK (amount >= 0),
+  recipient_staff_id BIGINT REFERENCES staff(staff_id) ON UPDATE CASCADE ON DELETE SET NULL
+);
+CREATE INDEX IF NOT EXISTS ix_commissions_order ON commissions(order_id);
+
+ALTER TABLE domains DROP COLUMN IF EXISTS registrar;
+
+CREATE EXTENSION IF NOT EXISTS pg_trgm;
+CREATE INDEX IF NOT EXISTS ix_domains_name_trgm
+  ON domains USING GIN (name gin_trgm_ops);
+
+  -- domains ownership fields present?
+SELECT column_name, data_type FROM information_schema.columns
+WHERE table_name='domains' AND column_name IN
+('steward_user_id','current_owner_customer_id','company_owned',
+ 'registrar_account_id','expires_at','auto_renew','lock_status',
+ 'auth_code','nameservers','status_enum');
+
+-- views compile?
+SELECT 1 FROM domain_full_view        LIMIT 1;
+SELECT 1 FROM customer_dashboard      LIMIT 1;
+
+

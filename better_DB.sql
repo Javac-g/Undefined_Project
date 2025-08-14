@@ -731,24 +731,9 @@ CREATE TABLE commissions (
 );
 
 ---------------------
-ALTER TABLE payments RENAME TO customer_payment_methods;
-
-ALTER TABLE customer_payment_methods
-  DROP COLUMN IF EXISTS amount,
-  DROP COLUMN IF EXISTS currency,
-  DROP COLUMN IF EXISTS expiration_date;
-
-ALTER TABLE customer_payment_methods
-  ADD COLUMN IF NOT EXISTS provider TEXT,          -- 'stripe','paypal',...
-  ADD COLUMN IF NOT EXISTS token_last4 TEXT,
-  ADD COLUMN IF NOT EXISTS active BOOLEAN NOT NULL DEFAULT TRUE;
-----------------------
--- Redefine the view but KEEP the old column types/names
--- rename only (names change, types stay the same)
 ALTER VIEW customer_dashboard RENAME COLUMN payment_type    TO last_payment_method;
 ALTER VIEW customer_dashboard RENAME COLUMN expiration_date TO last_payment_at;
 
--- keep existing column names & types
 CREATE OR REPLACE VIEW customer_dashboard AS
 SELECT 
     c.customer_id,
@@ -776,21 +761,18 @@ LEFT JOIN LATERAL (
     LIMIT 1
 ) op_latest ON true;
 
-ALTER TABLE payments
+ALTER TABLE payments RENAME TO customer_payment_methods;
+
+ALTER TABLE customer_payment_methods
   DROP COLUMN IF EXISTS amount,
   DROP COLUMN IF EXISTS currency,
   DROP COLUMN IF EXISTS expiration_date;
 
-ALTER TABLE payments
-  ADD COLUMN IF NOT EXISTS provider    TEXT,
+ALTER TABLE customer_payment_methods
+  ADD COLUMN IF NOT EXISTS provider TEXT,          -- 'stripe','paypal',...
   ADD COLUMN IF NOT EXISTS token_last4 TEXT,
-  ADD COLUMN IF NOT EXISTS active      BOOLEAN NOT NULL DEFAULT TRUE;
+  ADD COLUMN IF NOT EXISTS active BOOLEAN NOT NULL DEFAULT TRUE;
 
-CREATE INDEX IF NOT EXISTS ix_cpm_customer ON payments (customer_id);
-CREATE INDEX IF NOT EXISTS ix_cpm_customer_active
-  ON payments (customer_id) WHERE active;
-
-  ALTER TABLE payments RENAME TO customer_payment_methods;
 
 ALTER TABLE domains
   ADD COLUMN IF NOT EXISTS expires_at  TIMESTAMPTZ,

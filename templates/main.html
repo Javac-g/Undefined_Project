@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Pines Digital</title>
+    <link href="../css/main_style.css" rel="stylesheet"/>
+    <link href="../css/prices_style.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/ionicons/2.0.1/css/ionicons.min.css">
+
+    <!-- static assets
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/css/font-awesome.css}" rel="stylesheet"/>
+
+
+    <link th:href="@{/css/nav.css}" rel="stylesheet"/>
+    <link th:href="@{/img/favicon.png}" rel="icon" sizes="32x32"/>
+    <link href="../static/css/style.css" rel="stylesheet"> -->
+</head>
+
+<body>
+
+<!-- NAVBAR START
+    <div th:replace="fragments/navbar :: navbar"></div>
+
+ NAVBAR END-->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-text">
+            <h1>Our specialists help individuals and businesses worldwide.</h1>
+            <p>Your trusted domain partner — making premium domain registration possible for everyone, regardless of location, currency, or payment method.</p>
+            <a th:href="@{/domains}" class="cta-button">Buy a domain</a>
+        </div>
+        <!--
+        <div class="hero-image">
+          <img th:src="@{/img/img_kv-pic.png}" alt="Hero"/>
+        </div>
+        -->
+    </div>
+</section>
+
+<section class="benefits">
+    <div class="container">
+        <div class="section-header">
+            <h2>Why Choose Pines Digital</h2>
+            <p>Our commitment to sustainable skincare that delivers real results.</p>
+        </div>
+
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <!-- icons kept inline -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4"></path>
+                    </svg>
+                </div>
+                <h3 class="benefit-title">Built to Scale</h3>
+                <p>Whether you’re managing one domain or one hundred, our infrastructure is designed to grow with your brand.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="6" x2="12" y2="12"></line>
+                        <line x1="12" y1="12" x2="16" y2="14"></line>
+                    </svg>
+                </div>
+                <h3 class="benefit-title">Priority Support</h3>
+                <p>Real answers, fast. Get prioritized help through email — no bots, no scripts, just actual assistance.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="3" y1="9" x2="21" y2="9"></line>
+                        <line x1="9" y1="21" x2="9" y2="9"></line>
+                    </svg>
+                </div>
+                <h3 class="benefit-title">Clear Pricing</h3>
+                <p>No surprise renewals, hidden charges, or shady upsells. Transparent terms and crystal-clear billing, always.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="M8 17l4 4 4-4m0-5l-4-4-4 4"></path>
+                    </svg>
+                </div>
+                <h3 class="benefit-title">Freedom First</h3>
+                <p>We don’t lock you in. Move your domain, data, or hosting anytime. You’re in control — always.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                </div>
+                <h3 class="benefit-title">Secure by Default</h3>
+                <p>WHOIS privacy, SSLs, and DNS security are included even in our free tier. We take your digital safety seriously.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                </div>
+                <h3 class="benefit-title">Real Humans, Real Experience</h3>
+                <p>Built by developers who understand what it’s like to launch, scale, and protect a digital brand from the ground up.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                    </svg>
+                </div>
+                <h3 class="benefit-title">Flexible Across Providers</h3>
+                <p>Prefer Namecheap? GoDaddy? DigitalOcean? We integrate with your choice — no lock-ins, no pressure..</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                </div>
+                <h3 class="benefit-title">Market Proven</h3>
+                <p>Services tested and refined through real-world use. We’ve adopted the best practices from top providers — without the outdated corporate rules and CEO ego trips.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="n1">
+        <h2>Subscription Plans</h2>
+        <p>From startups to enterprises — expert support, fast delivery, and full domain service</p>
+    </div>
+</section>
+
+<div id="main">
+    <section class="chunk pricing pd-hidden">
+        <section class="section">
+            <div class="container">
+
+                <!-- PRICING CARDS (unchanged, just cleaned paths) -->
+                <!-- BASIC -->
+                <div class="columns is-multiline">
+                    <div class="column is-half-tablet is-half-desktop is-one-quarter-widescreen">
+                        <div class="card plan">
+                            <div class="card-content">
+                                <h3 class="title is-4">basic</h3>
+                                <p class="content plan-description">
+                                    For individuals who want to try out Pines Digital
+                                </p>
+                                <div class="plan-member">
+                                    <span class="member-limit">Up to 1 person</span>
+                                    <p class="help">1 Owner / 1 Admin</p>
+                                </div>
+                                <ul>
+                                    <li>✅&nbsp;Domain name registration (standard TLDs)</li>
+                                    <li>✅&nbsp;WHOIS Privacy included by default</li>
+                                    <li class="is-space"></li>
+                                    <li>✅&nbsp;Email-based support (response within 48 hours)</li>
+                                    <li>✅&nbsp;Full technical access to services (DNS, email, hosting)</li>
+                                    <li>✅&nbsp;Clients manage services themselves via our panel</li>
+                                    <li>✅&nbsp;Writing version, difference management</li>
+                                    <li>✅&nbsp;$5 purchase fee for transactions under $100</li>
+                                    <li>✅&nbsp;$15 purchase fee for transactions over $100</li>
+                                    <li>✅&nbsp;Email notifications for contacts and deadlines</li>
+                                    <li>✅&nbsp;Order receipts management panel</li>
+                                </ul>
+                            </div>
+                            <div class="plan-footer">
+                                <div class="plan-price">
+                                    <span class="plan-price-amount">0</span>
+                                    <span class="plan-price-unit">usd/month</span>
+                                    <span class="plan-price-tax">(tax included)</span>
+                                </div>
+                                <a class="button is-fullwidth" th:href="@{/o/billing}">Choose a plan</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PREMIUM -->
+                    <div class="column is-half-tablet is-half-desktop is-one-quarter-widescreen">
+                        <div class="card plan">
+                            <div class="card-content">
+                                <h3 class="title is-4">Premium</h3>
+                                <p class="content plan-description">For individuals who manage a lot of projects</p>
+                                <div class="plan-member">
+                                    <span class="member-limit">Up to 1 person</span>
+                                    <p class="help">1 Owner / 2 Admins (Free)</p>
+                                </div>
+                                <ul>
+                                    <li>👈&nbsp;All Basic features</li>
+                                    <li class="is-space"></li>
+                                    <li>✅&nbsp;Hosting configuration assistance</li>
+                                    <li>✅&nbsp;SSL certificate setup support</li>
+                                    <li class="is-space"></li>
+                                    <li>✅&nbsp;Private Email (PE) mailbox setup</li>
+                                    <li>✅&nbsp;Premium DNS included</li>
+                                    <li>✅&nbsp;DNS routing and SSL configuration support</li>
+                                    <li class="is-space"></li>
+                                    <li>✅&nbsp;Customer verification support & assistance</li>
+                                    <li>✅&nbsp;Access to premium domains</li>
+                                    <li>✅&nbsp;Email support (response within 24 hours)</li>
+                                    <li>✅&nbsp;No fee for purchases under $100</li>
+                                    <li class="is-space"></li>
+                                    <li>✅&nbsp;10% fee for purchases over $100</li>
+                                </ul>
+                            </div>
+                            <div class="plan-footer">
+                                <div class="plan-price">
+                                    <span class="plan-price-amount">50</span>
+                                    <span class="plan-price-unit">usd/month</span>
+                                    <span class="plan-price-tax">(tax included)</span>
+                                </div>
+                                <a class="button is-fullwidth is-primary is-outlined" th:href="@{/o/billing}">Choose a plan</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BUSINESS -->
+                    <div class="column is-half-tablet is-half-desktop is-one-quarter-widescreen">
+                        <div class="card plan is-primary">
+                            <div class="card-content">
+                                <h3 class="title is-4">business</h3>
+                                <p class="content plan-description">
+                                    For corporate and business teams that manage domain names and IT services as a team
+                                </p>
+                                <div class="plan-member">
+                                    <span class="member-limit">Up to 99 people</span>
+                                    <p class="help">Pay per member</p>
+                                </div>
+                                <ul>
+                                    <li>👈&nbsp;All Premium Features</li>
+                                    <li class="is-space"></li>
+                                    <li>✅&nbsp;Free general TLD domain (.com/.net/.org) for 1st year</li>
+                                    <li class="is-space"></li>
+                                    <li>✅&nbsp;Premium domain search & handling</li>
+                                    <li>✅&nbsp;Business account setup & verification</li>
+                                    <li class="is-space"></li>
+                                    <li>✅&nbsp;Registrar flexibility (Namecheap, GoDaddy, etc.)</li>
+                                    <li>✅&nbsp;KYC & identity verification support</li>
+                                    <li>✅&nbsp;Support via email (2h response)</li>
+                                    <li>✅&nbsp;Only 10% fee for premium domain purchases</li>
+                                    <li>✅&nbsp;Priority support</li>
+                                </ul>
+                            </div>
+                            <div class="plan-footer">
+                                <div class="plan-price">
+                                    250 USD <span class="plan-price-unit">/ person / month</span>
+                                </div>
+                                <a class="button is-fullwidth is-primary"
+                                   href="https://docs.google.com/forms/d/e/1FAIpQLSd3mgcquWQkHj5N88nNkHLZnEIp7AL-aPSfx1j6cb7cPH9WwA/viewform"
+                                   target="_blank">Choose a plan</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ENTERPRISE -->
+                    <div class="column is-half-tablet is-half-desktop is-one-quarter-widescreen">
+                        <div class="card plan">
+                            <div class="card-content">
+                                <h3 class="title is-4">Enterprise</h3>
+                                <p class="content plan-description">
+                                    Tailored for large businesses and mission-critical platforms: managed infrastructure, compliance support, custom integrations, and dedicated engineering.
+                                </p>
+                                <div class="plan-member">
+                                    <span class="member-limit">Unlimited</span>
+                                    <p class="help">Annual or invoice payment. Bank transfer supported.</p>
+                                </div>
+                                <ul>
+                                    <li>👈&nbsp;Full Business Features</li>
+                                    <li class="is-space"></li>
+                                    <li>✅&nbsp;Dedicated domain manager: renewals, DNS, support</li>
+                                    <li>✅&nbsp;Full domain lifecycle: acquire → renew → resell</li>
+                                    <li>✅&nbsp;Sanctioned region help: crypto, legal routing</li>
+                                    <li>✅&nbsp;Full hands-off service management</li>
+                                    <li>✅&nbsp;VIP support: 1h response SLA</li>
+                                    <li>✅&nbsp;Only 5% fee for premium domain purchases</li>
+                                </ul>
+                            </div>
+                            <div class="plan-footer">
+                                <div class="plan-price">1000 usd/month</div>
+                                <a class="button is-fullwidth is-primary is-outlined"
+                                   href="https://docs.google.com/forms/d/e/1FAIpQLSd3mgcquWQkHj5N88nNkHLZnEIp7AL-aPSfx1j6cb7cPH9WwA/viewform"
+                                   target="_blank">Choose a plan</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="n1"><h2>FAQ</h2></div>
+
+        <section id="qa" class="section">
+            <div class="container is-max-desktop">
+
+                <h4 class="title is-5 has-underline has-t3-margin">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">What payment methods can I use?</font>
+                    </font>
+                </h4>
+                <div class="content" style="padding-left: 3rem;">
+                    <p>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">Shodo accepts credit and debit card payments. </font>
+                        </font><br>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">You can pay with VISA, MasterCard, American Express, and JCB.</font>
+                        </font>
+                    </p>
+                    <p>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">For API plans and enterprise plans, payment can be made by invoice or bank transfer.</font>
+                        </font>
+                    </p>
+                </div>
+                <h4 class="title is-5 has-underline has-t3-margin">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">Do you support payment by invoice?</font>
+                    </font>
+                </h4>
+                <div class="content" style="padding-left: 3rem;">
+                    <p>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">Bank transfers are only available for API plans and Enterprise plans.</font>
+                        </font>
+                    </p>
+                    <p>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">For Premium and Business plans, we require payment by credit card.</font>
+                        </font>
+                    </p>
+                </div>
+                <h4 class="title is-5 has-underline has-t3-margin">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">Are security measures in place (regarding payments, transactions, other information communications, and data storage)?</font>
+                    </font>
+                </h4>
+                <div class="content" style="padding-left: 3rem;">
+                    <p>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">Yes. For payments, we use Stripe (https://stripe.com/), a payment service used by major Japanese companies. </font>
+                        </font><br>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">Shodo does not handle credit card information, and payments are made securely between you and Stripe.</font>
+                        </font>
+                    </p>
+                    <p>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">Shodo itself has been developed by cloud technology experts with security in mind. </font>
+                        </font><br>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">Data entrusted to us by our customers is stored in an encrypted database that cannot be accessed from the outside. </font>
+                        </font><br>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">All communications use secure communications called HTTPS, and the servers and log information used for communications are also operated in a cloud that cannot be accessed from the outside. </font>
+                        </font><br>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">In addition, the vulnerability of the server is checked regularly to ensure that it is not infected with malware or ransomware. </font>
+                        </font><br>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">Payment and data on the Shodo cloud are only accessible by designated staff, and two-step authentication is mandatory when logging in.</font>
+                        </font><br>
+                    </p>
+                </div>
+                <h4 class="title is-5 has-underline has-t3-margin">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">Is the server dedicated to each contract?</font>
+                    </font>
+                </h4>
+                <div class="content" style="padding-left: 3rem;">
+                    <p>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">No, Shodo's servers are used by all Shodo customers. </font>
+                        </font><br>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">Shodo's web app and proofreading API are operated on a multi-tenant basis. In the event of extreme load, it may affect other customers, but rest assured that Shodo has sufficient server resources. </font>
+                        </font><br>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">If you would like a dedicated server, please consider Shodo's Enterprise Plan.</font>
+                        </font><br>
+                    </p>
+                </div>
+                <h4 class="title is-5 has-underline has-t3-margin">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">What happens if I cancel during the contract?</font>
+                    </font>
+                </h4>
+                <div class="content" style="padding-left: 3rem;">
+                    <p>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">If you cancel during the contract period, you can continue to use the service for the remaining contract period. </font>
+                        </font><br>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">At the end of the contract period, the service will be changed to the Basic Plan and you will no longer be able to use the features and data provided in the paid plan.</font>
+                        </font>
+                    </p>
+                    <p>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">For more details, </font>
+                            <font style="vertical-align: inherit;">please check </font>
+                        </font><a href="/term/pricing/" target="_blank">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">the fees and payment details .</font>
+                        </font>
+                    </a>
+                        <font style="vertical-align: inherit;"></font><br>
+                    </p>
+                </div>
+                <h4 class="title is-5 has-underline has-t3-margin">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">What happens if I change my paid plan or the number of contracted users during my contract?</font>
+                    </font>
+                </h4>
+                <div class="content" style="padding-left: 3rem;">
+                    <p>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">If you change from a paid plan to another paid plan or change the number of contracted users, the plan change will be processed immediately. </font>
+                        </font><br>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">Whether you upgrade or downgrade, your payment will be adjusted on the next payment date, so no additional payment or refund will be incurred on the change date.</font>
+                        </font>
+                    </p>
+                    <p>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">For more details, </font>
+                            <font style="vertical-align: inherit;">please check </font>
+                        </font><a href="/term/pricing/" target="_blank">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">the fees and payment details .</font>
+                        </font>
+                    </a>
+                        <font style="vertical-align: inherit;"></font><br>
+                    </p>
+                </div>
+                <h4 class="title is-5 has-underline has-t3-margin">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">What happens if I change the contract period from monthly to annual?</font>
+                    </font>
+                </h4>
+                <div class="content" style="padding-left: 3rem;">
+                    <p>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">The contract will be changed immediately, and the contract cycle and payment date will also change. </font>
+                        </font><br>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">If additional payments are required, they will be required at the time of the change. If you have any remaining payments, such as when changing from annual to monthly, they will be carried over to the next contract renewal date.</font>
+                        </font>
+                    </p>
+                    <p>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">For more details, </font>
+                            <font style="vertical-align: inherit;">please check </font>
+                        </font><a href="/term/pricing/" target="_blank">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">the fees and payment details .</font>
+                        </font>
+                    </a>
+                        <font style="vertical-align: inherit;"></font><br>
+                    </p>
+                </div>
+                <h4 class="title is-5 has-underline has-t3-margin">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">What happens if the number of people in a business plan increases or decreases?</font>
+                    </font>
+                </h4>
+                <div class="content" style="padding-left: 3rem;">
+                    <p>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">With the Business plan, you can invite accounts to your organization up to the number of people you have contracted with. </font>
+                        </font><br>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">If you reduce the number of people in your contract and there are too many accounts in the organization, Shodo will automatically remove them from the organization and adjust the number of people.</font>
+                        </font>
+                    </p>
+                    <p>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">For more details, </font>
+                            <font style="vertical-align: inherit;">please check </font>
+                        </font><a href="/term/pricing/" target="_blank">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">the fees and payment details .</font>
+                        </font>
+                    </a>
+                        <font style="vertical-align: inherit;"></font><br>
+                    </p>
+                </div>
+                <h4 class="title is-5 has-underline has-t3-margin">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">What is your refund policy?</font>
+                    </font>
+                </h4>
+                <div class="content" style="padding-left: 3rem;">
+                    <p>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">If you cancel your contract, there will be no refunds because you can use the service until the end of the contract period. </font>
+                        </font><br>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">Also, if you delete a subscribed organization while there is still time left in the contract period, there will be no refunds. </font>
+                        </font><br>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">In the event of a system trouble or other problem with Shodo, we may offer a refund as a guarantee to our customers.</font>
+                        </font>
+                    </p>
+                    <p>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">For more details, </font>
+                            <font style="vertical-align: inherit;">please check </font>
+                        </font><a href="/term/pricing/" target="_blank">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">the fees and payment details .</font>
+                        </font>
+                    </a>
+                        <font style="vertical-align: inherit;"></font><br>
+                    </p>
+                </div>
+                <h4 class="title is-5 has-underline has-t3-margin">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">What is the difference between the Proofreading API Premium/Business Plan and the API Plan?</font>
+                    </font>
+                </h4>
+                <div class="content" style="padding-left: 3rem;">
+                    <p>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">The functionality is the same. However, we ask that only contracted members use the Premium Business Plan. For example, use it to write blogs or books, or proofread internal documents. </font>
+                        </font><br>
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">The API Plan has no restrictions on users, and can be used by many people inside and outside the company. For example, use it to incorporate into services provided by customers, or to link with internal organization systems.</font>
+                        </font><br>
+                    </p>
+                </div>
+                <p class="content help">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;"> For more information about each service, </font>
+                        <font style="vertical-align: inherit;">please check </font>
+                    </font><a href="/term/pricing/">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">the fees and payment details .</font>
+                    </font>
+                </a>
+                    <font style="vertical-align: inherit;"></font>
+                </p>
+            </div>
+        </section>
+
+        <hr/>
+    </section>
+</div>
+
+<section class="reviews">
+    <div class="container">
+        <div class="section-header">
+            <h2>Customer Reviews</h2>
+            <p>Discover what our customers have to say about their Oceanic experience.</p>
+        </div>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-quote">"</div>
+                <div class="stars">★★★★★</div>
+                <p class="review-text">Upgrading to Premium was a game-changer. Having a dedicated domain manager saved us hours each week.</p>
+                <div class="review-author">
+                    <div class="author-avatar">
+                        <img th:src="@{/img/avatar3.webp}" alt="Avatar 3"/>
+                    </div>
+                    <div class="author-info">
+                        <h4>Sarah M.</h4><p>Melbourne, VIC</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-quote">"</div>
+                <div class="stars">★★★★★</div>
+                <p class="review-text">Managing my domains has never been easier — Pines Digital delivers a seamless, intuitive experience.</p>
+                <div class="review-author">
+                    <div class="author-avatar">
+                        <img th:src="@{/img/avatar2.jpg}" alt="Avatar 2"/>
+                    </div>
+                    <div class="author-info">
+                        <h4>David L.</h4><p>Sydney, NSW</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-quote">"</div>
+                <div class="stars">★★★★★</div>
+                <p class="review-text">The support team is outstanding. They guided me through DNS and SSL setup with clarity and speed.</p>
+                <div class="review-author">
+                    <div class="author-avatar">
+                        <img th:src="@{/img/avatar1.jpg}" alt="Avatar 1"/>
+                    </div>
+                    <div class="author-info">
+                        <h4>Emma T.</h4><p>Brisbane, QLD</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="newsletter">
+    <div class="newsletter-container">
+        <div>
+            <h2>Join Our Pines Club</h2>
+            <p>Subscribe to receive exclusive offers, tips, and early access to new promo coupons.</p>
+        </div>
+        <form class="newsletter-form" th:action="@{/newsletter/subscribe}" method="post">
+            <input type="email" name="email" placeholder="Your email address" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-about">
+                <a th:href="@{/}" class="footer-logo">Pines Digital</a>
+                <p>Modern domain and hosting management service that simplifies online presence for individuals, developers, and businesses. We provide secure, flexible, and personalized solutions — from basic registrations to fully managed infrastructure and premium support.</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="Twitter/X">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h3>Shop</h3>
+                <ul>
+                    <li><a href="#">All Products</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Best Sellers</a></li>
+                    <li><a href="#">Gift Sets</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Ingredients</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h3>Help</h3>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Track Order</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 Pines Digital. All rights reserved. | Designed in Slovenia</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Local JS (place files in src/main/resources/static/js) -->
+<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/toggle.js}"></script>
+
+</body>
+</html>

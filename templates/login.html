@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+
+    <!-- static file: src/main/resources/static/css/login.css -->
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+
+<body>
+<div class="layout">
+    <div class="left">
+        <div class="left__content">
+            <a class="back" th:href="@{/}">
+                <span class="back__arrow">←</span> Go back
+            </a>
+
+            <h1 class="title">Sign in and stop threats</h1>
+
+            <p class="sub">
+                Not a member? <a th:href="@{/registration}">Sign up</a>
+            </p>
+
+            <!-- messages -->
+            <div th:if="${param.registered}" class="msg msg--ok">
+                Account created. Please sign in.
+            </div>
+
+            <div th:if="${param.error}" class="msg msg--error">
+                Invalid username or password.
+            </div>
+
+            <div th:if="${param.logout}" class="msg msg--ok">
+                You have been signed out.
+            </div>
+
+            <!-- IMPORTANT:
+                 For Spring Security default login processing URL is /login (POST).
+                 name="username" and name="password" are default parameter names. -->
+            <form class="form" th:action="@{/login}" method="post">
+
+                <!-- If Spring Security CSRF is enabled -->
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+                <label class="label" for="name">Name</label>
+                <input class="input"
+                       id="name"
+                       type="text"
+                       name="username"
+                       placeholder="Email address or username"
+                       autocomplete="username"
+                       required />
+
+                <label class="label" for="pass">Password</label>
+                <input class="input"
+                       id="pass"
+                       type="password"
+                       name="password"
+                       placeholder="Type in your password"
+                       autocomplete="current-password"
+                       required />
+
+                <label class="remember">
+                    <!-- Spring Security default is remember-me parameter name="remember-me" -->
+                    <input type="checkbox" name="remember-me" />
+                    <span>Remember me</span>
+                </label>
+
+                <button class="btn" type="submit">Sign in</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="right"></div>
+</div>
+</body>
+</html>

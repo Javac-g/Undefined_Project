@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Join</title>
+    <link rel="stylesheet" th:href="@{/css/reg.css}">
+</head>
+<body>
+<div class="layout">
+    <div class="left">
+        <div class="panel">
+            <h1>Join our community</h1>
+
+            <form th:action="@{/registration}" method="post" novalidate>
+
+                <div class="field">
+                    <label for="firstName">First name</label>
+                    <input id="firstName" name="firstName" type="text" placeholder="Enter your first name" required />
+                </div>
+
+                <div class="field">
+                    <label for="lastName">Last name</label>
+                    <input id="lastName" name="lastName" type="text" placeholder="Enter your last name" required />
+                </div>
+
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" placeholder="Enter your email address" required />
+                </div>
+
+                <div class="field">
+                    <label for="username">Username</label>
+                    <input id="username" name="username" type="text" placeholder="Enter a username" required />
+                </div>
+
+                <!-- Plan selection as dropdown -->
+                <div class="field">
+                    <label for="planId">Choose a plan</label>
+                    <select id="planId" name="planId" required>
+                        <option value="" disabled selected>Select your plan</option>
+                        <option th:each="plan : ${plans}" th:value="${plan.id}"
+                                th:text="${plan.planName + ' — ' + plan.cost + ' ' + plan.currency}">
+                        </option>
+                    </select>
+                    <div class="plan-description" th:each="plan : ${plans}"
+                         th:id="'desc-' + ${plan.id}"
+                         th:text="${plan.description}"
+                         style="display:none; margin: 10px;">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="password" placeholder="Min. 8 characters" minlength="8" required />
+                </div>
+
+                <div class="field">
+                    <label for="password2">Repeat password</label>
+                    <input id="password2" name="password2" type="password" placeholder="Min. 8 characters" minlength="8" required />
+                </div>
+
+                <div class="row-check">
+                    <input id="tos" type="checkbox" required />
+                    <label for="tos">Yes, I have read and agree to the <a href="#">Terms of Service</a>.</label>
+                </div>
+
+                <div class="actions">
+                    <button class="btn" type="submit">Join us</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="right"></div>
+</div>
+
+<script th:src="@{/js/reg.js}"></script>
+
+<!-- Optional JS to show description of selected plan -->
+<script>
+    const planSelect = document.getElementById('planId');
+    const planDescriptions = document.querySelectorAll('.plan-description');
+
+    planSelect.addEventListener('change', () => {
+        planDescriptions.forEach(desc => desc.style.display = 'none');
+        const selected = document.getElementById('desc-' + planSelect.value);
+        if (selected) selected.style.display = 'block';
+    });
+</script>
+
+</body>
+</html>

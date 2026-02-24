@@ -15,7 +15,7 @@ public class AuthController {
         this.registrationService = registrationService;
         this.subscriptionRepository = subscriptionRepository;
     }
-
+tructure
     @GetMapping("/login")
     public String loginPage() {
         return "login";

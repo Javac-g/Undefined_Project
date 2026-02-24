@@ -1,19 +1,4 @@
-import com.denysov.essex.model.MembershipPlan;
-import com.denysov.essex.model.Subscription;
-import com.denysov.essex.model.SubscriptionStatus;
-import com.denysov.essex.model.User;
-import com.denysov.essex.repository.MembershipPlanRepository;
-import com.denysov.essex.repository.SubscriptionRepository;
-import com.denysov.essex.services.MembershipService;
-import com.denysov.essex.services.RegistrationService;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
+package com.pinesdigital;
 
 @Controller
 public class AuthController {

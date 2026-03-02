@@ -1,6 +1,6 @@
 
 @Controller
-@RequestMapping("dashboard/hosting")
+@RequestMapping("/dashboard/hosting")
 public class HostingController{
 
 

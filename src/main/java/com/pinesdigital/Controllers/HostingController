@@ -1,0 +1,7 @@
+
+@Controller
+@RequestMapping("dashboard/hosting")
+public class HostingController{
+
+
+}

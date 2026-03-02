@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Overview</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,600" /><link rel="stylesheet" href="https://public.codepenassets.com/css/reset-2.0.min.css">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/jquery.selectric/1.10.1/selectric.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css'>
+	  <link rel="stylesheet"  th:href="@{/css/css/home_style.css}">
+	  <link rel="stylesheet" th:href="@{/css/style.css}">
+	  <link
+			  rel="stylesheet"
+			  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+	  >
+
+  </head>
+    
+  <body>
+
+<div class="container-fluid">
+	<div class="row">
+		<app-sidebar></app-sidebar>
+		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 my-3">
+			<div class="card-list">
+				<div class="row">
+					<div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+						<div class="card blue">
+							<div class="title">Account Funds</div>
+							<i class="zmdi zmdi-upload"></i>
+							<div class="value">$89</div>
+							<div class="stat"><b>13</b>$ increase expected by [date]</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+						<div class="card green">
+							<div class="title">Hostings</div>
+							<i class="zmdi zmdi-upload"></i>
+							<div class="value">5,990</div>
+							<div class="stat"><b>4</b> Expiring</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+						<div class="card orange">
+							<div class="title">SSL Certificates</div>
+							<i class="zmdi zmdi-download"></i>
+							<div class="value">$80,990</div>
+							<div class="stat"><b>4</b> Expiring</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+						<div class="card red">
+							<div class="title">Emails</div>
+							<i class="zmdi zmdi-download"></i>
+							<div class="value">3</div>
+							<div class="stat"><b>13</b> Expired</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+						<div class="card red">
+							<div class="title">Domains</div>
+							<i class="zmdi zmdi-download"></i>
+							<div class="value">3</div>
+							<div class="stat"><b>13</b> Expired</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+						<div class="card red">
+							<div class="title">Apps</div>
+							<i class="zmdi zmdi-download"></i>
+							<div class="value">3</div>
+							<div class="stat"><b>13</b> Expired</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+						<div class="card red">
+							<div class="title">Emails</div>
+							<i class="zmdi zmdi-download"></i>
+							<div class="value">3</div>
+							<div class="stat"><b>13</b> Expired</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+						<div class="card red">
+							<div class="title">Notifications</div>
+							<i class="zmdi zmdi-download"></i>
+							<div class="value">3</div>
+							<div class="stat"><b>13</b> Expired</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="projects mb-4">
+				<div class="projects-inner">
+					<header class="projects-header">
+						<div class="title">Expiring Services</div>
+						<div class="count">| <span th:text="${#lists.size(services)}">0</span>
+							Service</div>
+						<i class="zmdi zmdi-download"></i>
+					</header>
+					<table class="projects-table">
+						<thead>
+						<tr>
+							<th>Service</th>
+							<th>Deadline</th>
+							<th>Domains</th>
+							<th>Amount</th>
+							<th>Status</th>
+							<th class="text-right">Actions</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr th:each="service : ${services}" th:classappend="${service.status == 'Blocked'} ? 'danger-item'">
+							<td>
+								<p th:text="${service.name}">Service Name</p>
+								<p th:text="${service.domain}">Domain.com</p>
+							</td>
+							<td>
+								<p th:text="${#dates.format(service.deadline, 'dd MMM, yyyy')}">17 Oct, 2025</p>
+								<p th:if="${service.deadline.isBefore(T(java.time.LocalDate).now())}" class="text-danger">Overdue</p>
+								<p th:if="${service.gracePeriodDays > 0}" class="text-danger">
+									Grace Period [days]: <span th:text="${service.gracePeriodDays}">0</span>
+								</p>
+							</td>
+							<td class="member">
+								<figure><img th:src="@{${service.warningIcon}}" src="../img/no_warn.png" /></figure>
+								<div class="member-info">
+									<p th:text="${service.warningText}">Warning</p>
+									<p th:text="${service.warningDetail}">none</p>
+								</div>
+							</td>
+							<td>
+								<p th:text="${service.amount}">$0</p>
+								<p th:text="${service.paymentStatus}">Renewal</p>
+							</td>
+							<td class="status">
+								<span th:class="'status-text status-' + ${service.statusColor}" th:text="${service.status}">In progress</span>
+							</td>
+							<td>
+								<form class="form" action="#" method="POST">
+									<select class="action-box">
+										<option>Actions</option>
+										<option th:each="action : ${service.actions}" th:text="${action}">Action</option>
+									</select>
+								</form>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+	</div>
+			<div class="chart-data">
+				<div class="row">
+					<div class="col-12 col-md-4">
+						<div class="chart radar-chart dark">
+							<div class="actions">
+								<button type="button" class="btn btn-link" 
+										  data-toggle="dropdown" 
+										  aria-haspopup="true" aria-expanded="false">
+									 <i class="zmdi zmdi-more-vert"></i>
+								</button>
+								<div class="dropdown-menu dropdown-menu-right">
+									<button class="dropdown-item" type="button">Action</button>
+									<button class="dropdown-item" type="button">Another action</button>
+									<button class="dropdown-item" type="button">Something else here</button>
+								</div>
+							</div>
+							<h3 class="title">Household Expenditure</h3>
+							<p class="tagline">Yearly</p>
+							<canvas height="400" id="radarChartDark"></canvas>
+						</div>
+					</div>
+					<div class="col-12 col-md-4">
+						<div class="chart bar-chart light">
+							<div class="actions">
+								<button type="button" class="btn btn-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									 <i class="zmdi zmdi-more-vert"></i>
+								</button>
+								<div class="dropdown-menu dropdown-menu-right">
+									<button class="dropdown-item" type="button">Action</button>
+									<button class="dropdown-item" type="button">Another action</button>
+									<button class="dropdown-item" type="button">Something else here</button>
+								</div>
+							</div>
+							<h3 class="title">Monthly revenue</h3>
+							<p class="tagline">2015 (in thousands US$)</p>
+							<canvas height="400" id="barChartHDark"></canvas>
+						</div>
+					</div>
+					<div class="col-12 col-md-4">
+						<div class="chart doughnut-chart dark">
+							<div class="actions">
+								<button type="button" class="btn btn-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									 <i class="zmdi zmdi-more-vert"></i>
+								</button>
+								<div class="dropdown-menu dropdown-menu-right">
+									<button class="dropdown-item" type="button">Action</button>
+									<button class="dropdown-item" type="button">Another action</button>
+									<button class="dropdown-item" type="button">Something else here</button>
+								</div>
+							</div>
+							<h3 class="title">Exports of Goods</h3>
+							<p class="tagline">2015 (in billion US$)</p>
+							<canvas height="400" id="doughnutChartDark"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+</div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js'></script>
+<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
+<script src='https://cdn.jsdelivr.net/jquery.selectric/1.10.1/jquery.selectric.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js'></script><script  src="../js/home_script.js"></script>
+  <script src="../js/sidebar.js"></script>
+  </body>
+  
+</html>

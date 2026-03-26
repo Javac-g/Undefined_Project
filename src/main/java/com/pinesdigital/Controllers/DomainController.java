@@ -10,5 +10,16 @@ public class DomainController{
           return domainService.getSliceUserDomains(userId, page, 10);
       
         }
+
+    @GetMapping("/domains")
+    @ResponseBody
+    public List<Domain> loadMoreDomains(@RequestParam int page) {
+
+    Long userId = currentUser.getUserId();
+
+    return domainService
+            .getPageUserDomains(userId, page, 10)
+            .getContent();
+        }
   
 }

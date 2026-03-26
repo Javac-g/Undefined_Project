@@ -8,4 +8,5 @@ public interface DomainService {
     List<Domain> getDomainsByUserId(Long id);
     List<Domain> findByUserCredentialLogin(String username);
     int countByUsername(String username);
+    SliceResponse<DomainSummaryDTO> getUserDomains(Long userId, int page, int size);
 }

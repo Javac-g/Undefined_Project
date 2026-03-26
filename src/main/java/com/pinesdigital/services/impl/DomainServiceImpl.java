@@ -29,4 +29,26 @@ public class DomainServiceImpl implements DomainService {
         return domains != null ? domains : Collections.emptyList();
     }
 
+    public SliceResponse<DomainSummaryDTO> getUserDomains(Long userId, int page, int size) {
 
+    Pageable pageable = PageRequest.of(page, size, Sort.by("id").descending());
+
+    Slice<Domain> slice = domainRepository.findSliceByUserId(userId, pageable);
+
+    List<DomainSummaryDTO> dtos = slice.getContent()
+            .stream()
+            .map(domain -> DomainSummaryDTO.builder()
+                    .id(domain.getId())
+                    .name(domain.getName())
+                    .status(domain.getStatus().name())
+                    .build())
+            .toList();
+
+    return SliceResponse.<DomainSummaryDTO>builder()
+            .content(dtos)
+            .hasNext(slice.hasNext())
+            .page(slice.getNumber())
+            .build();
+    }
+
+}

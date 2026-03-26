@@ -25,7 +25,19 @@ public class DashboardController {
 
         return "dashboard";
     }
+    @GetMapping
+    public String dashboard1(Model model) {
+    
+        Long userId = currentUser.getUserId();
+    
+        Page<Domain> domains = domainService.getPageUserDomains(userId, 0, 10);
+    
+        model.addAttribute("domains", domains.getContent());
+        model.addAttribute("currentPage", 0);
+        model.addAttribute("totalPages", domains.getTotalPages());
 
+    return "dashboard";
+}
 
 
 }

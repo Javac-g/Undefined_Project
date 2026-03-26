@@ -29,7 +29,7 @@ public class DomainServiceImpl implements DomainService {
         return domains != null ? domains : Collections.emptyList();
     }
 
-    public SliceResponse<DomainSummaryDTO> getUserDomains(Long userId, int page, int size) {
+    public SliceResponse<DomainSummaryDTO> getSliceUserDomains(Long userId, int page, int size) {
 
     Pageable pageable = PageRequest.of(page, size, Sort.by("id").descending());
 

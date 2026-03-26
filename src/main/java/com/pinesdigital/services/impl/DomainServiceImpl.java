@@ -55,7 +55,7 @@ public class DomainServiceImpl implements DomainService {
 
     Pageable pageable = PageRequest.of(page, size, Sort.by("id").descending());
 
-    return domainRepository.findByUserId(userId, pageable);
+    return domainRepository.findByPageUserId(userId, pageable);
 }
 
 }

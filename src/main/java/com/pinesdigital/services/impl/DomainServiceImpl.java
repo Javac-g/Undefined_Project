@@ -51,4 +51,11 @@ public class DomainServiceImpl implements DomainService {
             .build();
     }
 
+    public Page<Domain> getPageUserDomains(Long userId, int page, int size) {
+
+    Pageable pageable = PageRequest.of(page, size, Sort.by("id").descending());
+
+    return domainRepository.findByUserId(userId, pageable);
+}
+
 }

@@ -11,4 +11,5 @@ public interface DomainRepository extends JpaRepository<Domain, Long> {
     List<Domain> findByUserId(Long userId);
     List<Domain> findByUserCredentialLogin(String username);
     long countByUserCredentialLogin(String login);
+    Slice<Domain> findSliceByUserId(Long userId, Pageable pageable);
 }
